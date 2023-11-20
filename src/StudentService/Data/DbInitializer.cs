@@ -15,16 +15,30 @@ public static class DbInitializer
     {
         await context.Database.MigrateAsync();
 
-        if (!context.Departments.Any())
+        if (!context.Departments.Any() && !context.Courses.Any())
         {
-            Console.WriteLine("==> Seeding Departments");
-            await context.AddRangeAsync(new DepartmentFaker().Generate(10));
-        }
+            var departments = new DepartmentFaker().Generate(20);
+            var courses = new CourseFaker().Generate(20);
+            await context.AddRangeAsync(departments);
+            await context.AddRangeAsync(courses);
+            await context.SaveChangesAsync();
+            if (!context.Classes.Any())
+            {
+                var classes = new ClassFaker().Generate(2000);
+                var random = new Random();
+                for (var i = 0; i < 20; i++)
+                {
+                    for (var j = 0; j < 10; j++)
+                    {
+                        var idx = random.Next(0, 2000);
+                        departments[i].Classes.Add(classes[idx]);
+                        courses[i].Classes.Add(classes[idx]);
+                        classes.Remove(classes[idx]);
+                    }
+                }
 
-        if (!context.Courses.Any())
-        {
-            Console.WriteLine("==> Seeding Courses");
-            await context.AddRangeAsync(new CourseFaker().Generate(10));
+                await context.SaveChangesAsync();
+            }
         }
 
         await context.SaveChangesAsync();
