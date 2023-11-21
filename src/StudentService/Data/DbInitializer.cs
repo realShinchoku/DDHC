@@ -30,7 +30,7 @@ public static class DbInitializer
                 {
                     for (var j = 0; j < 10; j++)
                     {
-                        var idx = random.Next(0, 2000);
+                        var idx = random.Next(0, classes.Count - 1);
                         departments[i].Classes.Add(classes[idx]);
                         courses[i].Classes.Add(classes[idx]);
                         classes.Remove(classes[idx]);
