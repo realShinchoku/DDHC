@@ -1,0 +1,27 @@
+﻿syntax = "proto3";
+
+option csharp_namespace = "StudentService";
+
+service GrpcStudent {
+  rpc GetStudent (GetStudentRequest) returns (GrpcStudentResponse);
+}
+
+message GetStudentRequest {
+  string id = 1;
+}
+
+message GrpcStudentModel {
+  string id = 1;
+  string name = 2;
+  string departmentName = 3;
+  string gradeName = 4;
+  string className = 5;
+  string departmentId = 6;
+  string gradeId = 7;
+  string classId = 8;
+  string studentCode = 9;
+}
+
+message GrpcStudentResponse {
+  GrpcStudentModel student = 1;
+}
