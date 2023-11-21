@@ -7,6 +7,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AttendanceService", "src\At
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StudentService", "src\StudentService\StudentService.csproj", "{17CB432F-8AD7-4C4E-849D-7CACF7A32E67}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "shared", "shared", "{64A1EF49-52D1-4413-956A-753184C4DEE8}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ApplicationExtension", "shared\ApplicationExtension\ApplicationExtension.csproj", "{8948BB26-531E-455A-89B6-BBD9BC7A69C6}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,9 +25,14 @@ Global
 		{17CB432F-8AD7-4C4E-849D-7CACF7A32E67}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{17CB432F-8AD7-4C4E-849D-7CACF7A32E67}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{17CB432F-8AD7-4C4E-849D-7CACF7A32E67}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8948BB26-531E-455A-89B6-BBD9BC7A69C6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8948BB26-531E-455A-89B6-BBD9BC7A69C6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8948BB26-531E-455A-89B6-BBD9BC7A69C6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8948BB26-531E-455A-89B6-BBD9BC7A69C6}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{8F4C0A33-182A-472D-955E-9BBF73C69D4A} = {1D88D323-F690-4BCD-A223-414E4199A4A5}
 		{17CB432F-8AD7-4C4E-849D-7CACF7A32E67} = {1D88D323-F690-4BCD-A223-414E4199A4A5}
+		{8948BB26-531E-455A-89B6-BBD9BC7A69C6} = {64A1EF49-52D1-4413-956A-753184C4DEE8}
 	EndGlobalSection
 EndGlobal
