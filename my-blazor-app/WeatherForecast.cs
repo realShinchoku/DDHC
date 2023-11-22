@@ -1,4 +1,4 @@
-namespace abc;
+namespace my_blazor_app;
 
 public class WeatherForecast
 {

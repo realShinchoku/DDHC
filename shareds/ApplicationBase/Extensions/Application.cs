@@ -17,7 +17,7 @@ public static class Application
         services.AddSwaggerGen();
     }
 
-    public static void AddApplicationBuilder(this IApplicationBuilder app)
+    public static void UseApplicationBuilder(this IApplicationBuilder app)
     {
         if (Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT") == Environments.Production) return;
         app.UseSwagger();

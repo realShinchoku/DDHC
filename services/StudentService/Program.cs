@@ -1,6 +1,8 @@
 using ApplicationBase.Extensions;
 using MassTransit;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Identity.Web;
 using Polly;
 using StudentService.Data;
 using StudentService.Services;
@@ -46,16 +48,13 @@ builder.Services.AddMassTransit(opts =>
     });
 });
 builder.Services.AddGrpc();
-
 builder.Services.AddScoped<IStudentRepository, StudentRepository>();
 
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
 
-app.AddApplicationBuilder();
-
-app.UseAuthorization();
+app.UseApplicationBuilder();
 
 app.MapControllers();
 

@@ -1,6 +1,6 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# 
+#
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "gateways", "gateways", "{92A48486-F208-4F51-85DF-CB615E8615A1}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MoblieGateway", "gateways\MoblieGateway\MoblieGateway.csproj", "{113D66DF-794E-4F45-BD6E-D80D0911CA19}"
@@ -14,8 +14,6 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "shareds", "shareds", "{4939A644-92ED-4171-B385-D8B331145ED1}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ApplicationBase", "shareds\ApplicationBase\ApplicationBase.csproj", "{A129B74B-2C57-4ED5-8991-F0BE389A6B56}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "abc", "abc\abc.csproj", "{2B99A910-F632-4B09-A965-A2213C7B5E94}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -39,10 +37,6 @@ Global
 		{A129B74B-2C57-4ED5-8991-F0BE389A6B56}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A129B74B-2C57-4ED5-8991-F0BE389A6B56}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A129B74B-2C57-4ED5-8991-F0BE389A6B56}.Release|Any CPU.Build.0 = Release|Any CPU
-		{2B99A910-F632-4B09-A965-A2213C7B5E94}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{2B99A910-F632-4B09-A965-A2213C7B5E94}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{2B99A910-F632-4B09-A965-A2213C7B5E94}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{2B99A910-F632-4B09-A965-A2213C7B5E94}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{113D66DF-794E-4F45-BD6E-D80D0911CA19} = {92A48486-F208-4F51-85DF-CB615E8615A1}

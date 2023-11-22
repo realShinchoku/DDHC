@@ -1,4 +1,5 @@
 using ApplicationBase.Extensions;
+using Microsoft.Identity.Web;
 using Microsoft.OpenApi.Models;
 using Swashbuckle.AspNetCore.SwaggerGen;
 using Yarp.ReverseProxy.Swagger;
@@ -9,10 +10,12 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 
 builder.Logging.AddLoggingService(builder.Configuration);
+builder.Services.AddIdentityService(builder.Configuration);
 
 builder.Services.AddReverseProxy()
     .LoadFromConfig(builder.Configuration.GetSection("ReverseProxy"))
     .AddSwagger(builder.Configuration.GetSection("ReverseProxy"));
+
 
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen(opts =>
@@ -44,5 +47,7 @@ if (!app.Environment.IsProduction())
 }
 
 app.MapReverseProxy();
+
+app.UseApplicationIdentity();
 
 app.Run();

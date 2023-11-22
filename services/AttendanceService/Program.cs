@@ -47,7 +47,7 @@ var app = builder.Build();
 
 // Configure the HTTP request pipeline.
 
-app.AddApplicationBuilder();
+app.UseApplicationBuilder();
 
 app.UseAuthorization();
 
