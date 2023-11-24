@@ -1,20 +1,18 @@
 using ApplicationBase.Extensions;
-using AttendanceService.Services;
+using AuthService.Consumers;
 using MassTransit;
 
 var builder = WebApplication.CreateBuilder(args);
-
-// Add services to the container.
-
 builder.Logging.AddLoggingService(builder.Configuration);
-builder.Services.AddApplicationService(builder.Configuration);
+builder.Services.AddIdentityService(builder.Configuration);
 builder.Services.AddControllers();
-
 
 builder.Services.AddMassTransit(opts =>
 {
-    opts.SetEndpointNameFormatter(new KebabCaseEndpointNameFormatter("attendance", false));
+    opts.AddConsumersFromNamespaceContaining<StudentCreatedFaultConsumer>();
 
+    opts.SetEndpointNameFormatter(new KebabCaseEndpointNameFormatter("auth", false));
+    
     opts.UsingRabbitMq((context, cfg) =>
     {
         cfg.UseMessageRetry(r =>
@@ -33,17 +31,14 @@ builder.Services.AddMassTransit(opts =>
     });
 });
 
-builder.Services.AddScoped<GrpcStudentClient>();
+// Add services to the container.
 
+builder.Services.AddControllers();
 
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
 
-app.UseApplicationBuilder();
-
-app.UseAuthorization();
-
+app.UseApplicationIdentity();
 app.MapControllers();
-
 app.Run();

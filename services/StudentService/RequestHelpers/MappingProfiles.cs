@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using Contracts;
 using StudentService.DTOs;
 using StudentService.Models;
 
@@ -12,10 +13,12 @@ public class MappingProfiles : Profile
             .IncludeMembers(x => x.Class)
             .ForMember(x => x.DepartmentId, o => o.MapFrom(s => s.Class.DepartmentId))
             .ForMember(x => x.DepartmentName, o => o.MapFrom(s => s.Class.Department.Name))
-            .ForMember(x => x.GradeId, o => o.MapFrom(s => s.Class.CourseId))
+            .ForMember(x => x.GradeId, o => o.MapFrom(s => s.Class.GradeId))
             .ForMember(x => x.GradeName, o => o.MapFrom(s => s.Class.Grade.Name));
         CreateMap<Class, StudentDto>();
         CreateMap<Grade, StudentDto>();
         CreateMap<Department, StudentDto>();
+
+        CreateMap<StudentCreated, Student>();
     }
 }

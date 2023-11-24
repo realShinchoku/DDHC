@@ -203,10 +203,10 @@ namespace StudentService.Data.Migrations
                     b.Property<string>("Code")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<Guid>("CourseId")
+                    b.Property<Guid>("DepartmentId")
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<Guid>("DepartmentId")
+                    b.Property<Guid>("GradeId")
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("Name")
@@ -214,9 +214,9 @@ namespace StudentService.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("CourseId");
-
                     b.HasIndex("DepartmentId");
+
+                    b.HasIndex("GradeId");
 
                     b.ToTable("Classes");
                 });
@@ -281,15 +281,15 @@ namespace StudentService.Data.Migrations
 
             modelBuilder.Entity("StudentService.Models.Class", b =>
                 {
-                    b.HasOne("StudentService.Models.Grade", "Grade")
-                        .WithMany("Classes")
-                        .HasForeignKey("CourseId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
                     b.HasOne("StudentService.Models.Department", "Department")
                         .WithMany("Classes")
                         .HasForeignKey("DepartmentId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("StudentService.Models.Grade", "Grade")
+                        .WithMany("Classes")
+                        .HasForeignKey("GradeId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 

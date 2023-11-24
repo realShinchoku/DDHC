@@ -28,7 +28,7 @@ public class DataContext : DbContext
             e.HasKey(x => x.Id);
             e.HasMany(x => x.Classes)
                 .WithOne(x => x.Grade)
-                .HasForeignKey(x => x.CourseId);
+                .HasForeignKey(x => x.GradeId);
         });
 
         builder.Entity<Department>(e =>
@@ -48,7 +48,7 @@ public class DataContext : DbContext
 
             e.HasOne(x => x.Grade)
                 .WithMany(x => x.Classes)
-                .HasForeignKey(x => x.CourseId);
+                .HasForeignKey(x => x.GradeId);
 
             e.HasOne(x => x.Department)
                 .WithMany(x => x.Classes)

@@ -1,0 +1,28 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+    <PropertyGroup>
+        <TargetFramework>net8.0</TargetFramework>
+        <Nullable>disable</Nullable>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <LangVersion>default</LangVersion>
+        <DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <ProjectReference Include="..\..\shareds\ApplicationBase\ApplicationBase.csproj"/>
+        <ProjectReference Include="..\..\shareds\Contracts\Contracts.csproj" />
+    </ItemGroup>
+
+    <ItemGroup>
+        <PackageReference Include="MassTransit.EntityFrameworkCore" Version="8.1.2"/>
+        <PackageReference Include="MassTransit.RabbitMQ" Version="8.1.2"/>
+        <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="8.0.0"/>
+    </ItemGroup>
+
+    <ItemGroup>
+      <Content Include="..\..\.dockerignore">
+        <Link>.dockerignore</Link>
+      </Content>
+    </ItemGroup>
+
+</Project>

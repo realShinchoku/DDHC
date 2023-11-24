@@ -9,5 +9,5 @@ public class Class
     public Department Department { get; set; }
     public Guid DepartmentId { get; set; }
     public Grade Grade { get; set; }
-    public Guid CourseId { get; set; }
+    public Guid GradeId { get; set; }
 }

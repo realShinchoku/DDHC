@@ -1,0 +1,78 @@
+﻿services:
+  mongodb:
+    image: mongo
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME=root
+      - MONGO_INITDB_ROOT_PASSWORD=mongopw
+    ports:
+      - 27017:27017
+    volumes:
+      - /var/lib/mongodb/data
+  rabbitmq:
+    image: rabbitmq:3-management-alpine
+    ports:
+      - 5672:5672
+      - 15672:15672
+  attendance-svc:
+    depends_on:
+      - mongodb
+      - rabbitmq
+    image: realshinchoku/attendance-svc
+    build:
+      context: .
+      dockerfile: services/AttendanceService/Dockerfile
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ConnectionStrings__DefaultConnection=mongodb://root:mongopw@localhost:27017
+      - RabbitMq__Host=rabbitmq
+      - GrpcStudent_Url=http://student-svc:7777
+
+  auth-svc:
+    depends_on:
+      - rabbitmq
+    image: realshinchoku/auth-svc
+    build:
+      context: .
+      dockerfile: services/AuthService/Dockerfile
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - RabbitMq__Host=rabbitmq
+      - AzureAd__Instance=https://login.microsoftonline.com/
+      - AzureAd__TenantId=bbf9aad6-5f58-4387-927e-02f0b07a72fa
+      - AzureAd__ClientId=6fea03b9-6f65-4507-994a-adee3daa6901
+      - AzureAd__ClientSecret=JV.8Q~ZzBlo3xUs9jSym7xOuC6yX-r~TCZEamc4l
+      - AzureAd__Scopes=User.Read
+      - DownstreamApi__BaseUrl=https://graph.microsoft.com/v1.0
+      - DownstreamApi__Scopes=user.read,User.ReadBasic.All
+
+  student-svc:
+    depends_on:
+      - rabbitmq
+    image: realshinchoku/student-svc
+    build:
+      context: .
+      dockerfile: services/StudentService/Dockerfile
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ConnectionStrings__DefaultConnection=Server=localhost; Database=InfoStudent; User Id=sa;Password=@P@ssw0rd02;TrustServerCertificate=True;Encrypt=False
+      - RabbitMq__Host=rabbitmq
+      - AzureAd__Instance=https://login.microsoftonline.com/
+      - AzureAd__TenantId=bbf9aad6-5f58-4387-927e-02f0b07a72fa
+      - AzureAd__ClientId=6fea03b9-6f65-4507-994a-adee3daa6901
+      - AzureAd__ClientSecret=JV.8Q~ZzBlo3xUs9jSym7xOuC6yX-r~TCZEamc4l
+      - AzureAd__Scopes=User.Read
+      - DownstreamApi__BaseUrl=https://graph.microsoft.com/v1.0
+      - DownstreamApi__Scopes=user.read,User.ReadBasic.All
+      - Kestrel__Endpoints__Http__Url=http://localhost:8080
+      - Kestrel__Endpoints__Grpc__Protocols=Http2
+      - Kestrel__Endpoints__Grpc__Url=http://localhost:7777
+
+  mobile-gateway:
+    image: realshinchoku/mobile-gateway
+    build:
+      context: .
+      dockerfile: gateways/MobileGateway/Dockerfile
+    ports:
+      - "5000:8080"
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Docker

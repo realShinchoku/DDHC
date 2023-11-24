@@ -4,7 +4,9 @@ using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Identity.Web;
 using Polly;
+using StudentService.Consumers;
 using StudentService.Data;
+using StudentService.Models;
 using StudentService.Services;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -21,6 +23,7 @@ builder.Services.AddDbContext<DataContext>(options =>
 });
 builder.Services.AddMassTransit(opts =>
 {
+
     opts.AddEntityFrameworkOutbox<DataContext>(opt =>
     {
         opt.QueryDelay = TimeSpan.FromSeconds(10);
@@ -28,6 +31,8 @@ builder.Services.AddMassTransit(opts =>
         opt.UseBusOutbox();
     });
 
+    opts.AddConsumersFromNamespaceContaining<StudentCreatedConsumer>();
+    
     opts.SetEndpointNameFormatter(new KebabCaseEndpointNameFormatter("student", false));
 
     opts.UsingRabbitMq((context, cfg) =>
@@ -43,7 +48,7 @@ builder.Services.AddMassTransit(opts =>
             host.Username(builder.Configuration.GetValue("RabbitMQ:Username", "guest"));
             host.Password(builder.Configuration.GetValue("RabbitMQ:Password", "guest"));
         });
-
+        
         cfg.ConfigureEndpoints(context);
     });
 });

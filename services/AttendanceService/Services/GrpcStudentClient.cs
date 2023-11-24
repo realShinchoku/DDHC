@@ -19,7 +19,7 @@ public class GrpcStudentClient
     {
         _logger.LogInformation("==> Calling GetStudent GRPC Service");
 
-        var channel = GrpcChannel.ForAddress(_config["GrpcStudent"] ?? throw new InvalidOperationException());
+        var channel = GrpcChannel.ForAddress(_config["GrpcStudent_Url"] ?? throw new InvalidOperationException());
         var client = new GrpcStudent.GrpcStudentClient(channel);
         var request = new GetStudentRequest { Id = id };
 

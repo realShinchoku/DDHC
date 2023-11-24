@@ -114,7 +114,7 @@ namespace StudentService.Data.Migrations
                     Name = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Code = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     DepartmentId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    CourseId = table.Column<Guid>(type: "uniqueidentifier", nullable: false)
+                    GradeId = table.Column<Guid>(type: "uniqueidentifier", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -126,8 +126,8 @@ namespace StudentService.Data.Migrations
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_Classes_Grades_CourseId",
-                        column: x => x.CourseId,
+                        name: "FK_Classes_Grades_GradeId",
+                        column: x => x.GradeId,
                         principalTable: "Grades",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
@@ -156,14 +156,14 @@ namespace StudentService.Data.Migrations
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_Classes_CourseId",
-                table: "Classes",
-                column: "CourseId");
-
-            migrationBuilder.CreateIndex(
                 name: "IX_Classes_DepartmentId",
                 table: "Classes",
                 column: "DepartmentId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Classes_GradeId",
+                table: "Classes",
+                column: "GradeId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_InboxState_Delivered",

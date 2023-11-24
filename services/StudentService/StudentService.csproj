@@ -5,6 +5,7 @@
         <Nullable>disable</Nullable>
         <ImplicitUsings>enable</ImplicitUsings>
         <LangVersion>default</LangVersion>
+        <DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
     </PropertyGroup>
 
     <ItemGroup>
@@ -29,6 +30,14 @@
 
     <ItemGroup>
         <ProjectReference Include="..\..\shareds\ApplicationBase\ApplicationBase.csproj"/>
+        <ProjectReference Include="..\..\shareds\Contracts\Contracts.csproj" />
+    </ItemGroup>
+
+
+    <ItemGroup>
+      <Content Include="..\..\.dockerignore">
+        <Link>.dockerignore</Link>
+      </Content>
     </ItemGroup>
 
 </Project>

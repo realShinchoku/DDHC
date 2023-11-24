@@ -5,6 +5,7 @@
         <Nullable>disable</Nullable>
         <ImplicitUsings>enable</ImplicitUsings>
         <LangVersion>default</LangVersion>
+        <DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
     </PropertyGroup>
 
 
@@ -16,6 +17,13 @@
     <ItemGroup>
         <PackageReference Include="Treyt.Yarp.ReverseProxy.Swagger" Version="3.4.0"/>
         <PackageReference Include="Yarp.ReverseProxy" Version="2.1.0"/>
+    </ItemGroup>
+
+
+    <ItemGroup>
+      <Content Include="..\..\.dockerignore">
+        <Link>.dockerignore</Link>
+      </Content>
     </ItemGroup>
 
 </Project>
