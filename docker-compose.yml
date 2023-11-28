@@ -1,4 +1,10 @@
 ﻿services:
+  sql-server:
+    image: mcr.microsoft.com/mssql/server:2022-latest
+    environment:
+      - ACCEPT_EULA=Y
+      - SA_PASSWORD=@P@ssw0rd02
+      - MSSQL_PID=Developer
   mongodb:
     image: mongo
     environment:
@@ -23,6 +29,7 @@
       dockerfile: services/AttendanceService/Dockerfile
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
+      - ASPNETCORE_HTTP_PORTS=80
       - ConnectionStrings__DefaultConnection=mongodb://root:mongopw@localhost:27017
       - RabbitMq__Host=rabbitmq
       - GrpcStudent_Url=http://student-svc:7777
@@ -36,6 +43,7 @@
       dockerfile: services/AuthService/Dockerfile
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
+      - ASPNETCORE_HTTP_PORTS=80
       - RabbitMq__Host=rabbitmq
       - AzureAd__Instance=https://login.microsoftonline.com/
       - AzureAd__TenantId=bbf9aad6-5f58-4387-927e-02f0b07a72fa
@@ -54,7 +62,8 @@
       dockerfile: services/StudentService/Dockerfile
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
-      - ConnectionStrings__DefaultConnection=Server=localhost; Database=InfoStudent; User Id=sa;Password=@P@ssw0rd02;TrustServerCertificate=True;Encrypt=False
+      - ASPNETCORE_HTTP_PORTS=80
+      - ConnectionStrings__DefaultConnection=Server=sql-server; Database=InfoStudent; User Id=sa;Password=@P@ssw0rd02;TrustServerCertificate=True;Encrypt=False
       - RabbitMq__Host=rabbitmq
       - AzureAd__Instance=https://login.microsoftonline.com/
       - AzureAd__TenantId=bbf9aad6-5f58-4387-927e-02f0b07a72fa
@@ -63,7 +72,7 @@
       - AzureAd__Scopes=User.Read
       - DownstreamApi__BaseUrl=https://graph.microsoft.com/v1.0
       - DownstreamApi__Scopes=user.read,User.ReadBasic.All
-      - Kestrel__Endpoints__Http__Url=http://localhost:8080
+      - Kestrel__Endpoints__Http__Url=http://localhost:80
       - Kestrel__Endpoints__Grpc__Protocols=Http2
       - Kestrel__Endpoints__Grpc__Url=http://localhost:7777
 
@@ -73,6 +82,6 @@
       context: .
       dockerfile: gateways/MobileGateway/Dockerfile
     ports:
-      - "5000:8080"
+      - "6000:8080"
     environment:
       - ASPNETCORE_ENVIRONMENT=Docker
