@@ -15,7 +15,7 @@
 
 
     <ItemGroup>
-        <PackageReference Include="Treyt.Yarp.ReverseProxy.Swagger" Version="3.4.0"/>
+        <PackageReference Include="Treyt.Yarp.ReverseProxy.Swagger" Version="3.5.0" />
         <PackageReference Include="Yarp.ReverseProxy" Version="2.1.0"/>
     </ItemGroup>
 

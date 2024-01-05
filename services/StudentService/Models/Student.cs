@@ -2,7 +2,7 @@
 
 namespace StudentService.Models;
 
-[Index(nameof(StudentCode))]
+[Index(nameof(StudentCode), IsUnique = true)]
 public class Student
 {
     public Guid Id { get; set; }
