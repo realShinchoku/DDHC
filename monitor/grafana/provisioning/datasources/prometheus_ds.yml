@@ -1,0 +1,7 @@
+﻿datasources:
+  - name: Prometheus
+    id: prometheus
+    access: proxy
+    type: prometheus
+    url: http://prometheus-clusterip:9090
+    isDefault: true

@@ -1,0 +1,234 @@
+# This is a generated file. Not intended for manual editing.
+services:
+  attendance-svc:
+    build:
+      context: "D:\\DDHC"
+      dockerfile: "services/AttendanceService/Dockerfile"
+      target: "base"
+      args:
+        BUILD_CONFIGURATION: "Debug"
+    command: []
+    entrypoint:
+    - "/opt/rider-debugger/linux-x64/dotnet/dotnet"
+    - "/opt/rider-debugger/JetBrains.Debugger.Worker.exe"
+    - "--mode=server"
+    - "--frontend-port=57100"
+    - "--backend-port=57300"
+    - "--timeout=60"
+    environment:
+      DOTNET_USE_POLLING_FILE_WATCHER: "true"
+      RIDER_DEBUGGER_LOG_DIR: "/var/opt/rider-debugger"
+      RESHARPER_LOG_CONF: "/etc/opt/rider-debugger/backend-log.xml"
+    image: "realshinchoku/ddhc-attendance-svc:dev"
+    ports:
+    - "127.0.0.1:57021:57100"
+    - "127.0.0.1:57221:57300"
+    volumes:
+    - "C:\\Users\\tienm\\.nuget\\packages:/root/.nuget/packages"
+    - "D:\\DDHC\\services\\AttendanceService:/app:rw"
+    - "D:\\DDHC:/src:rw"
+    - "C:\\Users\\tienm\\AppData\\Local\\JetBrains\\RiderRemoteDebugger\\2023.3.3\\\
+      Linux64:/opt/rider-debugger"
+    - "C:\\Program Files\\JetBrains\\JetBrains Rider 2023.2.3\\bin:/etc/opt/rider-debugger/backend-log.xml"
+    - "C:\\Users\\tienm\\AppData\\Local\\JetBrains\\Rider2023.3\\log\\DebuggerWorker\\\
+      JetBrains.Debugger.Worker.2024_2_02_22_10_15:/var/opt/rider-debugger:rw"
+    working_dir: "/app"
+  mobile-gateway:
+    build:
+      context: "D:\\DDHC"
+      dockerfile: "gateways/MobileGateway/Dockerfile"
+      target: "base"
+      args:
+        BUILD_CONFIGURATION: "Debug"
+    command: []
+    entrypoint:
+    - "/opt/rider-debugger/linux-x64/dotnet/dotnet"
+    - "/opt/rider-debugger/JetBrains.Debugger.Worker.exe"
+    - "--mode=server"
+    - "--frontend-port=57100"
+    - "--backend-port=57300"
+    - "--timeout=60"
+    environment:
+      DOTNET_USE_POLLING_FILE_WATCHER: "true"
+      RIDER_DEBUGGER_LOG_DIR: "/var/opt/rider-debugger"
+      RESHARPER_LOG_CONF: "/etc/opt/rider-debugger/backend-log.xml"
+    image: "realshinchoku/ddhc-mobile-gateway:dev"
+    ports:
+    - "127.0.0.1:57022:57100"
+    - "127.0.0.1:57222:57300"
+    volumes:
+    - "C:\\Users\\tienm\\.nuget\\packages:/root/.nuget/packages"
+    - "D:\\DDHC\\gateways\\MobileGateway:/app:rw"
+    - "D:\\DDHC:/src:rw"
+    - "C:\\Users\\tienm\\AppData\\Local\\JetBrains\\RiderRemoteDebugger\\2023.3.3\\\
+      Linux64:/opt/rider-debugger"
+    - "C:\\Program Files\\JetBrains\\JetBrains Rider 2023.2.3\\bin:/etc/opt/rider-debugger/backend-log.xml"
+    - "C:\\Users\\tienm\\AppData\\Local\\JetBrains\\Rider2023.3\\log\\DebuggerWorker\\\
+      JetBrains.Debugger.Worker.2024_2_02_22_10_15:/var/opt/rider-debugger:rw"
+    working_dir: "/app"
+  notify-svc:
+    build:
+      context: "D:\\DDHC"
+      dockerfile: "services/NotificationService/Dockerfile"
+      target: "base"
+      args:
+        BUILD_CONFIGURATION: "Debug"
+    command: []
+    entrypoint:
+    - "/opt/rider-debugger/linux-x64/dotnet/dotnet"
+    - "/opt/rider-debugger/JetBrains.Debugger.Worker.exe"
+    - "--mode=server"
+    - "--frontend-port=57100"
+    - "--backend-port=57300"
+    - "--timeout=60"
+    environment:
+      DOTNET_USE_POLLING_FILE_WATCHER: "true"
+      RIDER_DEBUGGER_LOG_DIR: "/var/opt/rider-debugger"
+      RESHARPER_LOG_CONF: "/etc/opt/rider-debugger/backend-log.xml"
+    image: "realshinchoku/ddhc-notify-svc:dev"
+    ports:
+    - "127.0.0.1:57023:57100"
+    - "127.0.0.1:57223:57300"
+    volumes:
+    - "C:\\Users\\tienm\\.nuget\\packages:/root/.nuget/packages"
+    - "D:\\DDHC\\services\\NotificationService:/app:rw"
+    - "D:\\DDHC:/src:rw"
+    - "C:\\Users\\tienm\\AppData\\Local\\JetBrains\\RiderRemoteDebugger\\2023.3.3\\\
+      Linux64:/opt/rider-debugger"
+    - "C:\\Program Files\\JetBrains\\JetBrains Rider 2023.2.3\\bin:/etc/opt/rider-debugger/backend-log.xml"
+    - "C:\\Users\\tienm\\AppData\\Local\\JetBrains\\Rider2023.3\\log\\DebuggerWorker\\\
+      JetBrains.Debugger.Worker.2024_2_02_22_10_15:/var/opt/rider-debugger:rw"
+    working_dir: "/app"
+  ow-svc:
+    build:
+      context: "D:\\DDHC"
+      dockerfile: "services/OWAdministrativeService/Dockerfile"
+      target: "base"
+      args:
+        BUILD_CONFIGURATION: "Debug"
+    command: []
+    entrypoint:
+    - "/opt/rider-debugger/linux-x64/dotnet/dotnet"
+    - "/opt/rider-debugger/JetBrains.Debugger.Worker.exe"
+    - "--mode=server"
+    - "--frontend-port=57100"
+    - "--backend-port=57300"
+    - "--timeout=60"
+    environment:
+      ASPNETCORE_STATICWEBASSETS: "/app/bin/Debug/net8.0/OWAdministrativeService.staticwebassets.runtime.CT.json"
+      DOTNET_USE_POLLING_FILE_WATCHER: "true"
+      RIDER_DEBUGGER_LOG_DIR: "/var/opt/rider-debugger"
+      RESHARPER_LOG_CONF: "/etc/opt/rider-debugger/backend-log.xml"
+    image: "realshinchoku/ddhc-ow-svc:dev"
+    ports:
+    - "127.0.0.1:57024:57100"
+    - "127.0.0.1:57224:57300"
+    volumes:
+    - "C:\\Users\\tienm\\.nuget\\packages:/root/.nuget/packages"
+    - "D:\\DDHC\\services\\OWAdministrativeService:/app:rw"
+    - "D:\\DDHC:/src:rw"
+    - "C:\\Users\\tienm\\AppData\\Local\\JetBrains\\RiderRemoteDebugger\\2023.3.3\\\
+      Linux64:/opt/rider-debugger"
+    - "C:\\Program Files\\JetBrains\\JetBrains Rider 2023.2.3\\bin:/etc/opt/rider-debugger/backend-log.xml"
+    - "C:\\Users\\tienm\\AppData\\Local\\JetBrains\\Rider2023.3\\log\\DebuggerWorker\\\
+      JetBrains.Debugger.Worker.2024_2_02_22_10_15:/var/opt/rider-debugger:rw"
+    working_dir: "/app"
+  p7-gateway:
+    build:
+      context: "D:\\DDHC"
+      dockerfile: "gateways/P7Gateway/Dockerfile"
+      target: "base"
+      args:
+        BUILD_CONFIGURATION: "Debug"
+    command: []
+    entrypoint:
+    - "/opt/rider-debugger/linux-x64/dotnet/dotnet"
+    - "/opt/rider-debugger/JetBrains.Debugger.Worker.exe"
+    - "--mode=server"
+    - "--frontend-port=57100"
+    - "--backend-port=57300"
+    - "--timeout=60"
+    environment:
+      DOTNET_USE_POLLING_FILE_WATCHER: "true"
+      RIDER_DEBUGGER_LOG_DIR: "/var/opt/rider-debugger"
+      RESHARPER_LOG_CONF: "/etc/opt/rider-debugger/backend-log.xml"
+    image: "realshinchoku/ddhc-p7-gateway:dev"
+    ports:
+    - "127.0.0.1:57025:57100"
+    - "127.0.0.1:57225:57300"
+    volumes:
+    - "C:\\Users\\tienm\\.nuget\\packages:/root/.nuget/packages"
+    - "D:\\DDHC\\gateways\\P7Gateway:/app:rw"
+    - "D:\\DDHC:/src:rw"
+    - "C:\\Users\\tienm\\AppData\\Local\\JetBrains\\RiderRemoteDebugger\\2023.3.3\\\
+      Linux64:/opt/rider-debugger"
+    - "C:\\Program Files\\JetBrains\\JetBrains Rider 2023.2.3\\bin:/etc/opt/rider-debugger/backend-log.xml"
+    - "C:\\Users\\tienm\\AppData\\Local\\JetBrains\\Rider2023.3\\log\\DebuggerWorker\\\
+      JetBrains.Debugger.Worker.2024_2_02_22_10_15:/var/opt/rider-debugger:rw"
+    working_dir: "/app"
+  student-svc:
+    build:
+      context: "D:\\DDHC"
+      dockerfile: "services/StudentService/Dockerfile"
+      target: "base"
+      args:
+        BUILD_CONFIGURATION: "Debug"
+    command: []
+    entrypoint:
+    - "/opt/rider-debugger/linux-x64/dotnet/dotnet"
+    - "/opt/rider-debugger/JetBrains.Debugger.Worker.exe"
+    - "--mode=server"
+    - "--frontend-port=57100"
+    - "--backend-port=57300"
+    - "--timeout=60"
+    environment:
+      DOTNET_USE_POLLING_FILE_WATCHER: "true"
+      RIDER_DEBUGGER_LOG_DIR: "/var/opt/rider-debugger"
+      RESHARPER_LOG_CONF: "/etc/opt/rider-debugger/backend-log.xml"
+    image: "realshinchoku/ddhc-student-svc:dev"
+    ports:
+    - "127.0.0.1:57026:57100"
+    - "127.0.0.1:57226:57300"
+    volumes:
+    - "C:\\Users\\tienm\\.nuget\\packages:/root/.nuget/packages"
+    - "D:\\DDHC\\services\\StudentService:/app:rw"
+    - "D:\\DDHC:/src:rw"
+    - "C:\\Users\\tienm\\AppData\\Local\\JetBrains\\RiderRemoteDebugger\\2023.3.3\\\
+      Linux64:/opt/rider-debugger"
+    - "C:\\Program Files\\JetBrains\\JetBrains Rider 2023.2.3\\bin:/etc/opt/rider-debugger/backend-log.xml"
+    - "C:\\Users\\tienm\\AppData\\Local\\JetBrains\\Rider2023.3\\log\\DebuggerWorker\\\
+      JetBrains.Debugger.Worker.2024_2_02_22_10_15:/var/opt/rider-debugger:rw"
+    working_dir: "/app"
+  teacher-gateway:
+    build:
+      context: "D:\\DDHC"
+      dockerfile: "gateways/TeacherGateway/Dockerfile"
+      target: "base"
+      args:
+        BUILD_CONFIGURATION: "Debug"
+    command: []
+    entrypoint:
+    - "/opt/rider-debugger/linux-x64/dotnet/dotnet"
+    - "/opt/rider-debugger/JetBrains.Debugger.Worker.exe"
+    - "--mode=server"
+    - "--frontend-port=57100"
+    - "--backend-port=57300"
+    - "--timeout=60"
+    environment:
+      DOTNET_USE_POLLING_FILE_WATCHER: "true"
+      RIDER_DEBUGGER_LOG_DIR: "/var/opt/rider-debugger"
+      RESHARPER_LOG_CONF: "/etc/opt/rider-debugger/backend-log.xml"
+    image: "realshinchoku/ddhc-teacher-gateway:dev"
+    ports:
+    - "127.0.0.1:57027:57100"
+    - "127.0.0.1:57227:57300"
+    volumes:
+    - "C:\\Users\\tienm\\.nuget\\packages:/root/.nuget/packages"
+    - "D:\\DDHC\\gateways\\TeacherGateway:/app:rw"
+    - "D:\\DDHC:/src:rw"
+    - "C:\\Users\\tienm\\AppData\\Local\\JetBrains\\RiderRemoteDebugger\\2023.3.3\\\
+      Linux64:/opt/rider-debugger"
+    - "C:\\Program Files\\JetBrains\\JetBrains Rider 2023.2.3\\bin:/etc/opt/rider-debugger/backend-log.xml"
+    - "C:\\Users\\tienm\\AppData\\Local\\JetBrains\\Rider2023.3\\log\\DebuggerWorker\\\
+      JetBrains.Debugger.Worker.2024_2_02_22_10_15:/var/opt/rider-debugger:rw"
+    working_dir: "/app"

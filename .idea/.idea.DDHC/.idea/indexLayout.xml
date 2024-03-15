@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="UserContentModel">
+    <attachedFolders>
+      <Path>.github</Path>
+      <Path>docs</Path>
+      <Path>frontends</Path>
+      <Path>infra</Path>
+      <Path>monitor</Path>
+    </attachedFolders>
+    <explicitIncludes>
+      <Path>.gitignore</Path>
+      <Path>fontends</Path>
+      <Path>infra</Path>
+      <Path>nginx.conf</Path>
+      <Path>shareds</Path>
+    </explicitIncludes>
+    <explicitExcludes />
+  </component>
+</project>

@@ -1,0 +1,81 @@
+﻿apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ow-svc
+  labels:
+    app: ow-svc
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: ow-svc
+  template:
+    metadata:
+      name: ow-svc
+      labels:
+        app: ow-svc
+    spec:
+      containers:
+        - name: ow-svc
+          image: realshinchoku/ddhc-ow-svc:latest
+          imagePullPolicy: Always
+          env:
+            - name: ConnectionStrings__DefaultConnection
+              valueFrom:
+                secretKeyRef:
+                  name: mongo-secret
+                  key: connectionString
+            - name: RabbitMQ__Host
+              value: rabbit-clusterip
+            - name: RabbitMQ__Username
+              valueFrom:
+                secretKeyRef:
+                  name: rabbit-secret
+                  key: username
+            - name: RabbitMQ__Password
+              valueFrom:
+                secretKeyRef:
+                  name: rabbit-secret
+                  key: password
+            - name: AzureAd__Instance
+              value: https://login.microsoftonline.com/
+            - name: AzureAd__TenantId
+              value: TENANT_ID
+            - name: AzureAd__ClientId
+              valueFrom:
+                secretKeyRef:
+                  name: azure-secret
+                  key: clientId
+            - name: AzureAd__ClientSecret
+              valueFrom:
+                secretKeyRef:
+                  name: azure-secret
+                  key: clientSecret
+            - name: AzureAd__Scopes
+              value: SCOPES
+            - name: DownstreamApi__BaseUrl
+              value: https://graph.microsoft.com/v1.0
+            - name: DownstreamApi__Scopes__0
+              value: SCOPES
+            - name: DownstreamApi__Scopes__1
+              value: openid
+            - name: DownstreamApi__Scopes__2
+              value: profile
+            - name: DownstreamApi__Scopes__3
+              value: offline_access
+            - name: DownstreamApi__Scopes__4
+              value: email
+      restartPolicy: Always
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: ow-clusterip
+spec:
+  type: ClusterIP
+  selector:
+    app: ow-svc
+  ports:
+    - port: 80
+      targetPort: 80
+      name: web

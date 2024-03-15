@@ -1,0 +1,24 @@
+﻿frame Đăng nhập với Outlook
+actor Người dùng
+participant Hệ thống
+materialdesignicons F0D22 Outlook
+autonumber 1
+autoactivation on
+
+Người dùng -> Hệ thống: Mở trang đăng nhập
+Hệ thống -> Outlook: Mở popup
+deactivateafter Hệ thống
+Outlook -->Người dùng: Trang đăng nhập
+
+Người dùng -> Outlook: Đăng nhập với tài khoản của trường
+
+Outlook --> Hệ thống: Thông tin người dùng
+activate Hệ thống
+Hệ thống ->Hệ thống: Kiểm tra thông tin người dùng
+Hệ thống --> Người dùng: Trang chủ tương ứng
+alt Đăng nhập lần đầu
+Hệ thống --> Người dùng: Trang xác thực thông tin người dùng
+Người dùng -> Hệ thống: Thông tin người dùng
+Hệ thống ->>Hệ thống: Lưu thông tin người dùng
+Hệ thống -->Người dùng: Trang chủ tương ứng
+end

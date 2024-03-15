@@ -1,0 +1,13 @@
+﻿frame Xem lịch sử điểm danh
+actor Giảng viên
+participant Hệ thống
+autonumber 1
+autoactivation on
+
+Giảng viên -> Hệ thống: Chọn chức năng xem lịch sử điểm danh
+Hệ thống -> Hệ thống: Hiển thị chức năng xem lịch sử điểm danh
+Hệ thống --> Giảng viên: Chức năng xem lịch sử điểm danh
+
+Giảng viên -> Hệ thống: Chọn môn học muốn xem lịch sử
+Hệ thống -> Hệ thống: Hiển thị lịch sử điểm danh của môn học
+Hệ thống --> Giảng viên: Lịch sử điểm danh của môn học

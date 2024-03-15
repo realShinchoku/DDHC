@@ -1,0 +1,15 @@
+﻿frame Bắt đầu điểm danh
+actor Giảng viên
+participant Hệ thống
+actor Sinh viên
+autonumber 1
+autoactivation on
+
+Giảng viên -> Hệ thống: Chọn chức năng điểm danh
+Hệ thống -> Hệ thống: Hiển thị chức năng điểm danh
+Hệ thống --> Giảng viên: Chức năng điểm danh
+
+Giảng viên -> Hệ thống: Chọn Bắt đầu điểm danh
+Giảng viên -> Hệ thống: Chọn thời gian điểm danh
+Hệ thống -> Hệ thống: Bắt đầu điểm danh
+Hệ thống --> Sinh viên: Thông báo bắt đầu điểm danh

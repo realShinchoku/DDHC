@@ -1,0 +1,14 @@
+﻿frame Duyệt các yêu cầu thủ tục hành chính
+actor PCTCTSV
+participant Hệ thống
+autonumber 1
+autoactivation on
+
+PCTCTSV -> Hệ thống: Chọn chức năng các biểu mẫu hành chính
+Hệ thống -> Hệ thống: Hiển thị danh sách các biểu mẫu
+Hệ thống --> PCTCTSV: Danh sách các biểu mẫu
+
+PCTCTSV -> Hệ thống: Chọn duyệt hay không duyệt cho các biểu mẫu
+PCTCTSV -> Hệ thống: Thêm nội dung thông báo về cho sinh viên yêu cầu
+Hệ thống -> Hệ thống: Gửi thông báo về cho sinh viên yêu cầu
+Hệ thống --> PCTCTSV: Xác nhận thông báo đã được gửi

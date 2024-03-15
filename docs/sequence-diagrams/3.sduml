@@ -1,0 +1,15 @@
+﻿frame  Gửi yêu cầu thủ tục hành chính
+actor Sinh viên
+participant Hệ thống
+autonumber 1
+autoactivation on
+
+Sinh viên -> Hệ thống: Chọn dịch vụ hành chính
+Hệ thống -> Hệ thống: Tiếp nhận thông tin biểu mẫu
+Hệ thống -> Hệ thống: Kiểm tra thông tin biểu mẫu
+alt Thông tin biểu mẫu không đủ
+    Hệ thống --> Sinh viên: Trả về lỗi tương ứng
+else Thông tin biểu mẫu đủ
+    Hệ thống -> Hệ thống: Lưu dữ liệu vào cơ sở dữ liệu
+    Hệ thống --> Sinh viên: Trả về mã biểu mẫu
+end

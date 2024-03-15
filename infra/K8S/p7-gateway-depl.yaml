@@ -1,0 +1,36 @@
+﻿apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: p7-gateway
+spec:
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: p7-gateway
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app.kubernetes.io/name: p7-gateway
+    spec:
+      containers:
+        - image: realshinchoku/ddhc-p7-gateway
+          imagePullPolicy: Always
+          name: p7-gateway
+          ports:
+            - containerPort: 80
+          env:
+            - name: ASPNETCORE_ENVIRONMENT
+              value: K8S
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: p7-gateway
+spec:
+  ports:
+    - port: 80
+      targetPort: 80
+      protocol: TCP
+  type: NodePort
+  selector:
+    app.kubernetes.io/name: p7-gateway

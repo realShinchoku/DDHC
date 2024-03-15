@@ -1,0 +1,83 @@
+﻿apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: attendance-svc
+  labels:
+    app: attendance-svc
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: attendance-svc
+  template:
+    metadata:
+      name: attendance-svc
+      labels:
+        app: attendance-svc
+    spec:
+      containers:
+        - name: attendance-svc
+          image: realshinchoku/ddhc-attendance-svc:latest
+          imagePullPolicy: Always
+          env:
+            - name: StudentServiceUrl
+              value: http://student-clusterip
+            - name: ConnectionStrings__DefaultConnection
+              valueFrom:
+                secretKeyRef:
+                  name: mongo-secret
+                  key: connectionString
+            - name: RabbitMQ__Host
+              value: rabbit-clusterip
+            - name: RabbitMQ__Username
+              valueFrom:
+                secretKeyRef:
+                  name: rabbit-secret
+                  key: username
+            - name: RabbitMQ__Password
+              valueFrom:
+                secretKeyRef:
+                  name: rabbit-secret
+                  key: password
+            - name: AzureAd__Instance
+              value: https://login.microsoftonline.com/
+            - name: AzureAd__TenantId
+              value: TENANT_ID
+            - name: AzureAd__ClientId
+              valueFrom:
+                secretKeyRef:
+                  name: azure-secret
+                  key: clientId
+            - name: AzureAd__ClientSecret
+              valueFrom:
+                secretKeyRef:
+                  name: azure-secret
+                  key: clientSecret
+            - name: AzureAd__Scopes
+              value: SCOPES
+            - name: DownstreamApi__BaseUrl
+              value: https://graph.microsoft.com/v1.0
+            - name: DownstreamApi__Scopes__0
+              value: SCOPES
+            - name: DownstreamApi__Scopes__1
+              value: openid
+            - name: DownstreamApi__Scopes__2
+              value: profile
+            - name: DownstreamApi__Scopes__3
+              value: offline_access
+            - name: DownstreamApi__Scopes__4
+              value: email
+      restartPolicy: Always
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: attendance-clusterip
+spec:
+  type: ClusterIP
+  selector:
+    app: attendance-svc
+  ports:
+    - port: 80
+      targetPort: 80
+      name: web

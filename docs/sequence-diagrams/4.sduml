@@ -1,0 +1,13 @@
+﻿frame Xem các yêu cầu thủ tục hành chính
+actor PCTCTSV
+participant Hệ thống
+autonumber 1
+autoactivation on
+
+PCTCTSV -> Hệ thống: Chọn chức năng các biểu mẫu hành chính
+Hệ thống -> Hệ thống: Hiển thị danh sách các biểu mẫu
+Hệ thống --> PCTCTSV: Danh sách các biểu mẫu
+
+PCTCTSV -> Hệ thống: Chọn biểu mẫu để xem chi tiết
+Hệ thống -> Hệ thống: Hiển thị biểu mẫu chi tiết
+Hệ thống --> PCTCTSV: Biểu mẫu chi tiết

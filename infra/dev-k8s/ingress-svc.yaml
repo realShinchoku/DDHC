@@ -1,0 +1,79 @@
+﻿apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: nginx-ddhc-ingress
+  annotations:
+    cert-manager.io/issuer: letsencrypt-prod
+    nginx.ingress.kubernetes.io/proxy-body-size: "0"
+spec:
+  ingressClassName: nginx
+  rules:
+    - host: pccct.tlhd.online
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: p7-client
+                port:
+                  number: 80
+    - host: gv.tlhd.online
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: teacher-client
+                port:
+                  number: 80
+    - host: mobile.api.tlhd.online
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: mobile-gateway
+                port:
+                  number: 80
+    - host: pccct.api.tlhd.online
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: p7-gateway
+                port:
+                  number: 80
+    - host: gv.api.tlhd.online
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: teacher-gateway
+                port:
+                  number: 80
+    - host: monitor.tlhd.online
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: grafana
+                port:
+                  number: 3000
+  tls:
+    - hosts:
+        - pccct.tlhd.online
+        - gv.tlhd.online
+        - mobile.api.tlhd.online
+        - pccct.api.tlhd.online
+        - gv.api.tlhd.online
+        - monitor.tlhd.online
+      secretName: ssl-tlhd-online

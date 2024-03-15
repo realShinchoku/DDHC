@@ -1,0 +1,15 @@
+﻿frame Nhập thông tin môn học
+actor Giảng viên
+participant Hệ thống
+autonumber 1
+autoactivation on
+
+Giảng viên -> Hệ thống: Chọn chức năng nhập thông tin môn học
+Hệ thống -> Hệ thống: Hiển thị chức năng nhập thông tin môn học
+Hệ thống --> Giảng viên: Chức năng nhập thông tin môn học
+
+Giảng viên -> Hệ thống: Chọn nhập môn học mới
+Giảng viên -> Hệ thống: Nhập thông tin môn học: tên môn học,\nthời gian, tiết học, phòng học, mã môn học
+Giảng viên -> Hệ thống: Tải lên danh sách sinh viên
+Hệ thống -> Hệ thống: Lưu môn học giảng viên vừa nhập
+Hệ thống --> Giảng viên: Thông báo môn học đã được lưu

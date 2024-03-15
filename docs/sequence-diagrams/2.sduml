@@ -1,0 +1,19 @@
+﻿frame Điểm danh
+
+actor Sinh viên
+participant Client
+participant Hệ thống
+autonumber 1
+autoactivation on
+Sinh viên->Client: Quét mã QR
+Client->Hệ thống: Truy xuất thông tin môn học
+Hệ thống-->Client: Trả về thông tin môn học
+Client->Hệ thống: Gửi thông tin điểm danh
+Hệ thống->Hệ thống: Kiểm tra thông tin sinh viên,\n thời gian, tiết học, \nphòng học, wifi, bluetooth
+Hệ thống-->Client: Kết quả điểm danh
+
+alt Phòng sai
+    Hệ thống-->Client: Trả lại kết quả điểm danh không thành công
+else Điểm danh muộn
+    Hệ thống-->Client: Trả lại kết quả điểm danh muộn
+end

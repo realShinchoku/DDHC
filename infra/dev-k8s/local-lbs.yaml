@@ -1,0 +1,128 @@
+﻿#apiVersion: v1
+#kind: Service
+#metadata:
+#  name: postgres-lb
+#spec:
+#  type: LoadBalancer
+#  selector:
+#    app: postgres
+#  ports:
+#    - port: 5432
+#      targetPort: 5432
+#---
+#apiVersion: v1
+#kind: Service
+#metadata:
+#  name: rabbit-lb
+#spec:
+#  type: LoadBalancer
+#  selector:
+#    app: rabbitmq
+#  ports:
+#    - port: 15672
+#      targetPort: 15672
+#---
+#apiVersion: v1
+#kind: Service
+#metadata:
+#  name: mongo-lb
+#spec:
+#  type: LoadBalancer
+#  selector:
+#    app: mongo
+#  ports:
+#    - port: 27017
+#      targetPort: 27017
+#---
+apiVersion: v1
+kind: Service
+metadata:
+  name: teacher-client-lb
+spec:
+  type: LoadBalancer
+  selector:
+    app: teacher-client
+  ports:
+    - name: http
+      port: 80
+      targetPort: 80
+    
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: p7-client-lb
+spec:
+  type: LoadBalancer
+  selector:
+    app: p7-client
+  ports:
+    - port: 80
+      targetPort: 80
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: mobile-gateway-lb
+spec:
+  type: LoadBalancer
+  selector:
+    app: mobile-gateway
+  ports:
+    - name: http
+      port: 80
+      targetPort: 80
+    
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: p7-gateway-lb
+spec:
+  type: LoadBalancer
+  selector:
+    app: p7-gateway
+  ports:
+      - name: http
+        port: 80
+        targetPort: 80
+      
+      
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: teacher-gateway-lb
+spec:
+  type: LoadBalancer
+  selector:
+    app: teacher-gateway
+  ports:
+    - name: http
+      port: 80
+      targetPort: 80
+    
+#---
+#apiVersion: v1
+#kind: Service
+#metadata:
+#  name: prometheus-lb
+#spec:
+#  type: LoadBalancer
+#  selector:
+#    app: prometheus
+#  ports:
+#    - port: 80
+#      targetPort: 9090
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: grafana-lb
+spec:
+  type: LoadBalancer
+  selector:
+    app: grafana
+  ports:
+    - port: 80
+      targetPort: 3000

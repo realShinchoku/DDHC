@@ -1,0 +1,64 @@
+﻿apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: teacher-gateway
+spec:
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: teacher-gateway
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app.kubernetes.io/name: teacher-gateway
+    spec:
+      containers:
+        - image: realshinchoku/ddhc-teacher-gateway
+          imagePullPolicy: Always
+          name: teacher-gateway
+          ports:
+            - containerPort: 80
+          env:
+            - name: ASPNETCORE_ENVIRONMENT
+              value: K8S
+            - name: AzureAd__Instance
+              value: https://login.microsoftonline.com/
+            - name: AzureAd__TenantId
+              value: TENANT_ID
+            - name: AzureAd__ClientId
+              valueFrom:
+                secretKeyRef:
+                  name: azure-secret
+                  key: clientId
+            - name: AzureAd__ClientSecret
+              valueFrom:
+                secretKeyRef:
+                  name: azure-secret
+                  key: clientSecret
+            - name: AzureAd__Scopes
+              value: SCOPES
+            - name: DownstreamApi__BaseUrl
+              value: https://graph.microsoft.com/v1.0
+            - name: DownstreamApi__Scopes__0
+              value: SCOPES
+            - name: DownstreamApi__Scopes__1
+              value: openid
+            - name: DownstreamApi__Scopes__2
+              value: profile
+            - name: DownstreamApi__Scopes__3
+              value: offline_access
+            - name: DownstreamApi__Scopes__4
+              value: email
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: teacher-gateway
+spec:
+  ports:
+    - port: 80
+      targetPort: 80
+      protocol: TCP
+  type: NodePort
+  selector:
+    app.kubernetes.io/name: teacher-gateway

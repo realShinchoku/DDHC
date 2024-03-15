@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="JavaScriptLibraryMappings">
+    <excludedPredefinedLibrary name="DDHC/frontends/p7-client/.yarn/unplugged/@esbuild-win32-x64-npm-0.19.12-1bf4cb5f20/node_modules" />
+    <excludedPredefinedLibrary name="DDHC/frontends/p7-client/.yarn/unplugged/@rollup-rollup-win32-x64-msvc-npm-4.9.6-416b5a71e5/node_modules" />
+    <excludedPredefinedLibrary name="DDHC/frontends/p7-client/.yarn/unplugged/@swc-core-virtual-67b508f3ee/node_modules" />
+    <excludedPredefinedLibrary name="DDHC/frontends/p7-client/.yarn/unplugged/@swc-core-win32-x64-msvc-npm-1.3.107-e407271c6c/node_modules" />
+    <excludedPredefinedLibrary name="DDHC/frontends/p7-client/.yarn/unplugged/esbuild-npm-0.19.12-fb5a3a4313/node_modules" />
+    <excludedPredefinedLibrary name="DDHC/frontends/p7-client/.yarn/unplugged/node-gyp-npm-10.0.1-48708ce70b/node_modules" />
+    <excludedPredefinedLibrary name="DDHC/frontends/teacher-client/.yarn/unplugged/@esbuild-win32-x64-npm-0.19.12-1bf4cb5f20/node_modules" />
+    <excludedPredefinedLibrary name="DDHC/frontends/teacher-client/.yarn/unplugged/@rollup-rollup-win32-x64-msvc-npm-4.9.6-416b5a71e5/node_modules" />
+    <excludedPredefinedLibrary name="DDHC/frontends/teacher-client/.yarn/unplugged/@swc-core-virtual-726645572d/node_modules" />
+    <excludedPredefinedLibrary name="DDHC/frontends/teacher-client/.yarn/unplugged/@swc-core-win32-x64-msvc-npm-1.3.107-e407271c6c/node_modules" />
+    <excludedPredefinedLibrary name="DDHC/frontends/teacher-client/.yarn/unplugged/esbuild-npm-0.19.12-fb5a3a4313/node_modules" />
+    <excludedPredefinedLibrary name="DDHC/frontends/teacher-client/.yarn/unplugged/node-gyp-npm-10.0.1-48708ce70b/node_modules" />
+  </component>
+</project>
