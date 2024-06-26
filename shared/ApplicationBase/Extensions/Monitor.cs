@@ -18,7 +18,6 @@ public static class Monitor
     public static void UseMonitor(this IApplicationBuilder app)
     {
         app.UseMetricServer();
-        app.UseHttpMetrics();
         app.UseHttpMetrics(options => { options.ReduceStatusCodeCardinality(); });
     }
 }
